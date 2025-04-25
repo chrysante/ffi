@@ -111,8 +111,6 @@ set(FFI_INCLUDE_DIRS
     ${FFI_ROOT}/include
     ${FFI_ROOT})
 
-include_directories(${FFI_INCLUDE_DIRS})
-
 if (NOT FFI_USE_SHARED_LIBS)
     add_definitions(-DFFI_BUILDING)
 endif()
@@ -267,6 +265,8 @@ if(WIN32 OR MINGW)
 endif()
 
 add_library(libffi ${FFI_SOURCES})
+
+target_include_directories(libffi PUBLIC ${FFI_INCLUDE_DIRS})
 
 install(TARGETS libffi
     EXPORT ${PROJECT_NAME}Targets
